@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini-vue</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script type="module">
+    import { effect, reactive } from './src/reactivity.js';
+    // import { renderer } from './src/runtime-dom.js';
+
+    function renderer(domString, container) {
+        container.innerHTML = domString
+    }
+
+    const info = reactive({ age: 23, name: 'Lilei' })
+
+    effect(() => {
+        // renderer.render(`<h1>${info.age} ${info.name}</h1>`,
+        //     document.getElementById('app'))
+        renderer(`<h1>${info.age} ${info.name}</h1>`,
+            document.getElementById('app'))
+    })
+
+    setTimeout(() => {
+        info.name = 'Lili'
+    }, 3000);
+</script>
+
+</html>
